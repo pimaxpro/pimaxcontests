@@ -1,7 +1,7 @@
 window.CONTEST_DATA = {
   id: 'marathon',
   title: 'PimaX Infinity Marathon',
-  subTitle: 'Rèn luyện sự kiên trì, tư duy đỉnh cao',
+  subTitle: 'Cuộc đua toán học hàng tuần cho học sinh đam mê môn toán, hướng tới kì thi HSG, HSA, TSA, THPT Quốc Gia...',
   prefix: 'Infinity/',
   themeClass: 'theme-marathon', // Nền màu Xanh
   years: [
