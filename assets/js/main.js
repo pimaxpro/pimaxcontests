@@ -26,10 +26,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.head.appendChild(dataScript);
   });
 
-  // =========================================================
-  // GIỮ NGUYÊN 100% TOÀN BỘ LOGIC GỐC
-  // =========================================================
-
   // 1. Tự động Render Footer & Toast Notification chung
   if (window.UIComponentsModule) {
     window.UIComponentsModule.init();
