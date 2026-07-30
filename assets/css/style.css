@@ -428,16 +428,6 @@ a {
   margin-left: 2px;
 }
 
-/* BOX 4: FANPAGE WIDGET (CLEAN CONTAINER) */
-.fanpage-widget-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #ffffff;
-  border-radius: 6px;
-  overflow: hidden;
-}
-
 /* Cột phải: Khung Preview */
 .preview-area {
   flex-grow: 1;
