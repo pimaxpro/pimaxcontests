@@ -10,11 +10,14 @@
 </head>
 <body>
 
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v18.0"></script>
+
   <div id="page-content">
     <section class="hero">
       <h1><a href="https://pimaxpro.github.io/pimaxcontests/" class="hero-title-link" id="hero-title">--</a></h1>
       <p class="hero-sub" id="hero-sub">--</p>
-      <div class="social-wrapper">
+      <div class="social-wrapper" id="social-wrapper">
         <a href="https://www.tiktok.com/@pimaxghettoan" target="_blank" rel="noopener" class="social-card"><i class="fa-brands fa-tiktok"></i> <span class="divider">|</span> TikTok</a>
         <a href="https://www.facebook.com/PimaXPro" target="_blank" rel="noopener" class="social-card"><i class="fa-brands fa-facebook-f"></i> <span class="divider">|</span> Facebook</a>
       </div>
@@ -23,12 +26,12 @@
     <div class="layout-2col">
       <aside class="sidebar-column">
         
-        <div class="sidebar-exams-box">
+        <div class="sidebar-box sidebar-exams-box">
           <div class="sidebar-header"><h2><i class="fa-solid fa-folder-tree"></i> Danh sách Bài thi</h2></div>
           <div id="tree-menu" class="tree-menu"></div>
         </div>
 
-        <div class="sidebar-actions-box">
+        <div class="sidebar-box sidebar-actions-box">
           <a href="https://pimaxtsa.com/" target="_blank" class="sidebar-action-btn btn-practice">
             <i class="fa-solid fa-laptop-code"></i>
             <span>Phòng luyện đề</span>
@@ -40,6 +43,41 @@
             <span>Đăng ký khóa học</span>
             <i class="fa-solid fa-arrow-up-right-from-square btn-arrow"></i>
           </a>
+        </div>
+
+        <div class="sidebar-box sidebar-counter-box">
+          <div class="sidebar-header">
+            <h2><i class="fa-solid fa-chart-line"></i> Thống kê truy cập</h2>
+          </div>
+          <div class="counter-content">
+            <span class="counter-label">Số lượt ghé thăm</span>
+            <div class="counter-number">
+              <i class="fa-regular fa-eye"></i>
+              <span id="visitor-count">1,678,454</span>
+              <span class="counter-unit">views</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-box sidebar-fanpage-box">
+          <div class="sidebar-header">
+            <h2><i class="fa-brands fa-facebook-f"></i> Fanpage PimaX</h2>
+          </div>
+          <div class="fanpage-widget-container">
+            <div class="fb-page" 
+                 data-href="https://www.facebook.com/PimaXPro" 
+                 data-tabs="" 
+                 data-width="280" 
+                 data-height="130" 
+                 data-small-header="true" 
+                 data-adapt-container-width="true" 
+                 data-hide-cover="false" 
+                 data-show-facepile="false">
+              <blockquote cite="https://www.facebook.com/PimaXPro" class="fb-xfbml-parse-ignore">
+                <a href="https://www.facebook.com/PimaXPro">PimaX - Toán &amp; TSA</a>
+              </blockquote>
+            </div>
+          </div>
         </div>
 
       </aside>
