@@ -1,7 +1,7 @@
 window.CONTEST_DATA = {
   id: 'tournament',
   title: 'PimaX TSABK Tournament',
-  subTitle: 'Sân chơi giúp các em cải thiện kĩ năng xử lý bài thi TSA',
+  subTitle: 'Hệ thống bài thi chuẩn cấu trúc với kì thi TSA, hướng tới tuyển sinh Đại học Bách Khoa Hà Nội',
   prefix: 'TSABK Tournament/',
   themeClass: '', // Nền mặc định (Hồng)
   years: [
