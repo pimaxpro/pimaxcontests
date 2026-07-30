@@ -1,13 +1,13 @@
 /* =========================================================
-   ĐÁP ÁN: EXAM_CODE (Dạng Multi-Section)
+   ĐÁP ÁN: MARATHON WEEK 2 (Dạng Multi-Section)
 ========================================================= */
 window.EXAM_ANSWERS_BANK = window.EXAM_ANSWERS_BANK || {};
 
-window.EXAM_ANSWERS_BANK["EXAM_CODE"] = {
-  "examTitle": "EXAM_CODE",
+window.EXAM_ANSWERS_BANK["Marathon Week 2"] = {
+  "examTitle": "Marathon Week 2",
   "sections": [
     {
-      "sectionName": "Phần trắc nghiệm",
+      "sectionName": "Multiple Choice",
       "answers": {
         "1": "C",
         "2": "B",
@@ -16,7 +16,7 @@ window.EXAM_ANSWERS_BANK["EXAM_CODE"] = {
       }
     },
     {
-      "sectionName": "Phần đúng/sai",
+      "sectionName": "True/False Questions",
       "answers": {
         "1": {
           "a": "Đúng",
@@ -33,7 +33,7 @@ window.EXAM_ANSWERS_BANK["EXAM_CODE"] = {
       }
     },
     {
-      "sectionName": "Phần trả lời ngắn",
+      "sectionName": "Short Answer Questions",
       "answers": {
         "1": "39",
         "2": "0,35",
