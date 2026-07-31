@@ -2,27 +2,42 @@
    CORE MAIN INITIALIZER (DISPATCHER)
 ========================================================= */
 
+
+/* =========================================================
+   URL UNIFICATION & CANONICAL ROUTER
+========================================================= */
+(function unifyURL() {
+  const path = window.location.pathname;
+  const hash = window.location.hash;
+
+  // Nếu người dùng đang mở Tournament.html -> Tự động chuyển về contest.html?type=tournament
+  if (path.endsWith('Tournament.html')) {
+    window.location.replace(`contest.html?type=tournament${hash}`);
+    return;
+  }
+
+  // Nếu người dùng đang mở Marathon.html -> Tự động chuyển về contest.html?type=marathon
+  if (path.endsWith('Marathon.html')) {
+    window.location.replace(`contest.html?type=marathon${hash}`);
+    return;
+  }
+})();
+
 document.addEventListener('DOMContentLoaded', async () => {
-  // 0. Bổ vệ chống Copy / F12
   if (window.ProtectionModule) {
     window.ProtectionModule.init();
   }
 
-  // 0. Khởi tạo Module Đánh giá & Bình luận dùng chung
-  if (window.RatingCommentModule) {
-    window.RatingCommentModule.init();
-  }
-
-  // Tự động nạp file dữ liệu tương ứng (data-tournament.js hoặc data-marathon.js) dựa vào URL ?type=...
   const urlParams = new URLSearchParams(window.location.search);
   let contestType = urlParams.get('type');
+  const pathName = window.location.pathname.toLowerCase();
 
   if (!contestType) {
-    if (window.location.pathname.includes('Marathon')) contestType = 'marathon';
+    if (pathName.includes('marathon')) contestType = 'marathon';
     else contestType = 'tournament';
   }
 
-  // Nạp dữ liệu động trước khi chạy các phần bên dưới
+  // Nạp dữ liệu
   await new Promise((resolve) => {
     const isMarathon = contestType === 'marathon';
     const scriptId = 'data-contest-script';
@@ -36,7 +51,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.head.appendChild(dataScript);
   });
 
-  // 1. Tự động Render Footer & Toast
   if (window.UIComponentsModule) {
     window.UIComponentsModule.init();
   }
@@ -61,56 +75,47 @@ document.addEventListener('DOMContentLoaded', async () => {
     window.ShareActionsModule.init();
   }
 
-  // Quản lý việc Chọn & Kích hoạt Bài thi
   const examItems = document.querySelectorAll('.exam-item');
 
   function activateExam(item) {
+    if (!item) return;
+
     examItems.forEach(i => i.classList.remove('active'));
     item.classList.add('active');
 
     const examTitle = item.getAttribute('data-title');
 
-    // Cập nhật Khung Xem trước PDF ở Cột 2
+    // Hiển thị PDF Drive
     if (window.PdfViewerModule) {
       window.PdfViewerModule.renderPreview(item);
     }
 
-    // Tự động Mở các Nhánh Cây chứa Bài thi được chọn ở Cột 1
     if (window.MenuTreeModule) {
       window.MenuTreeModule.expandParentsOfItem(item);
     }
 
-    // TỰ ĐỘNG NẠP LẠI ĐÁNH GIÁ SAO & BÌNH LUẬN DÙNG CHUNG CỦA BÀI THI NÀY VÀO CỘT 2
+    // Nạp Đánh giá & Bình luận theo đúng examTitle
     if (window.RatingCommentModule && examTitle) {
-      window.RatingCommentModule.loadForExam(examTitle);
+      window.RatingCommentModule.init(examTitle);
     }
   }
 
-  // Tự động Chọn Bài thi Mới nhất hoặc Bài thi từ Hash trên URL
   if (examItems.length > 0) {
     const urlHash = window.location.hash.replace('#', '').trim();
     let targetExam = null;
 
-    if (urlHash && window.PdfViewerModule) {
+    if (urlHash) {
       examItems.forEach(item => {
-        const itemHash = window.PdfViewerModule.getExamHash(item.getAttribute('data-title'));
-        if (itemHash === urlHash) {
+        const title = item.getAttribute('data-title') || '';
+        const driveUrl = item.getAttribute('data-drive') || '';
+        if (title.includes(urlHash) || driveUrl.includes(urlHash)) {
           targetExam = item;
         }
       });
     }
 
-    if (!targetExam && window.PdfViewerModule) {
+    if (!targetExam) {
       targetExam = examItems[0];
-      let maxDate = window.PdfViewerModule.parseDateStr(targetExam.getAttribute('data-update'));
-
-      examItems.forEach(item => {
-        const itemDate = window.PdfViewerModule.parseDateStr(item.getAttribute('data-update'));
-        if (itemDate > maxDate) {
-          maxDate = itemDate;
-          targetExam = item;
-        }
-      });
     }
 
     if (targetExam) {
