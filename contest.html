@@ -11,6 +11,7 @@
 <body>
 
   <div id="page-content">
+    <!-- HERO HEADER -->
     <section class="hero">
       <h1><a href="https://pimaxpro.github.io/pimaxcontests/" class="hero-title-link" id="hero-title">--</a></h1>
       <p class="hero-sub" id="hero-sub">--</p>
@@ -21,13 +22,16 @@
     </section>
 
     <div class="layout-2col">
+      <!-- CỘT 1: SIDEBAR CỐ ĐỊNH DANH SÁCH BÀI THI -->
       <aside class="sidebar-column">
         
+        <!-- BOX 1: DANH SÁCH BÀI THI -->
         <div class="sidebar-box sidebar-exams-box">
           <div class="sidebar-header"><h2><i class="fa-solid fa-folder-tree"></i> Danh sách Bài thi</h2></div>
           <div id="tree-menu" class="tree-menu"></div>
         </div>
 
+        <!-- BOX 2: CỤM 2 NÚT HÀNH ĐỘNG -->
         <div class="sidebar-box sidebar-actions-box">
           <a href="https://pimaxtsa.com/" target="_blank" class="sidebar-action-btn btn-practice">
             <i class="fa-solid fa-laptop-code"></i>
@@ -44,7 +48,10 @@
 
       </aside>
 
+      <!-- CỘT 2: PREVIEW AREA (BOX TRẮNG DUY NHẤT BẰNG ĐẦU VỚI SIDEBAR BÊN TRÁI) -->
       <main class="preview-area">
+        
+        <!-- PHẦN XEM ĐỀ THI GOOGLE DRIVE -->
         <div class="preview-header">
           <div class="preview-title-row">
             <i class="fa-regular fa-file-lines doc-icon"></i>
@@ -63,6 +70,7 @@
           </div>
         </div>
 
+        <!-- CONTAINER CHỨA IFRAME DRIVE -->
         <div class="drive-iframe-container">
           <div class="iframe-overlay-cover"></div>
           <div class="side-share-actions">
@@ -73,7 +81,10 @@
           <iframe id="drive-preview-iframe" src="" allow="autoplay" allowfullscreen></iframe>
         </div>
 
-        <div class="rating-widget-card">
+        <hr class="card-inner-divider">
+
+        <!-- PHẦN ĐÁNH GIÁ 5 SAO & THỐNG KÊ -->
+        <div class="rating-widget-section">
           <div class="rating-card-header">
             <h3><i class="fa-solid fa-star-half-stroke"></i> Đánh giá chất lượng đề thi</h3>
           </div>
@@ -127,7 +138,10 @@
           </div>
         </div>
 
-        <div class="comment-widget-card">
+        <hr class="card-inner-divider">
+
+        <!-- PHẦN BÌNH LUẬN & THẢO LUẬN -->
+        <div class="comment-widget-section">
           <div class="comment-card-header">
             <h3><i class="fa-solid fa-comments"></i> Thảo luận & Thắc mắc <span id="comment-total-badge">(0)</span></h3>
           </div>
@@ -142,15 +156,11 @@
                 <label for="cmt-user-age"><i class="fa-regular fa-calendar"></i> Tuổi</label>
                 <input type="number" id="cmt-user-age" min="10" max="99" placeholder="17" required>
               </div>
-              <div class="input-group">
-                <label for="cmt-user-school"><i class="fa-solid fa-school"></i> Học sinh trường cấp 3 nào?</label>
-                <input type="text" id="cmt-user-school" placeholder="Ví dụ: THPT Chuyên KHTN" required>
-              </div>
             </div>
 
             <div class="input-group">
               <label for="cmt-user-content"><i class="fa-solid fa-pen"></i> Nội dung trao đổi / Thắc mắc bài làm</label>
-              <textarea id="cmt-user-content" rows="3" placeholder="Nhập câu hỏi hoặc cảm nhận của bạn về đề thi này..." required></textarea>
+              <textarea id="cmt-user-content" rows="2" placeholder="Nhập câu hỏi hoặc cảm nhận của bạn về đề thi này..." required></textarea>
             </div>
 
             <div class="form-submit-row">
@@ -161,13 +171,15 @@
           </form>
 
           <div id="comments-feed-list" class="comments-feed-list">
-            </div>
+            <!-- Render tự động từ JS -->
+          </div>
         </div>
 
       </main>
     </div>
   </div>
 
+  <!-- SCRIPT MODULES -->
   <script src="assets/js/modules/ui-components.js"></script>
   <script src="assets/js/modules/menu-tree.js"></script>
   <script src="assets/js/modules/pdf-viewer.js"></script>
