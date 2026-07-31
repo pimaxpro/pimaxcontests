@@ -7,6 +7,19 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="icon" href="logo1.ico">
+  
+  <!-- SỬA/ĐỒNG BỘ: Tự động điều hướng nếu mở bằng đường dẫn legacy cũ -->
+  <script>
+    (function unifyLegacyUrls() {
+      const path = window.location.pathname;
+      const hash = window.location.hash;
+      if (path.endsWith('Tournament.html')) {
+        window.location.replace('contest.html?type=tournament' + hash);
+      } else if (path.endsWith('Marathon.html')) {
+        window.location.replace('contest.html?type=marathon' + hash);
+      }
+    })();
+  </script>
 </head>
 <body>
 
