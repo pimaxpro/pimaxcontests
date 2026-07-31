@@ -1,5 +1,5 @@
 /* =========================================================
-   MODULE: RATING & COMMENT SYSTEM (ĐÁNH GIÁ SAO & BÌNH LUẬN)
+   MODULE: RATING & COMMENT SYSTEM (ĐÁNH GIÁ SAO & BÌNH LUẬN DÙNG CHUNG)
 ========================================================= */
 
 window.RatingCommentModule = {
@@ -9,7 +9,7 @@ window.RatingCommentModule = {
     this.bindEvents();
   },
 
-  // Khởi tạo/Load dữ liệu Đánh giá & Bình luận khi người dùng chọn Đề thi
+  // Load Đánh giá & Bình luận khi chuyển sang Bài thi bất kỳ
   loadForExam(examTitle) {
     if (!examTitle) return;
     this.currentExamKey = 'pimax_exam_' + examTitle.split('(')[0].trim().replace(/[^a-zA-Z0-9]/g, '_');
@@ -21,9 +21,9 @@ window.RatingCommentModule = {
   // 1. XỬ LÝ ĐÁNH GIÁ SAO
   getRatingData() {
     const defaultData = {
-      totalVotes: 12,
-      sumStars: 58,
-      starsCount: { 5: 10, 4: 2, 3: 0, 2: 0, 1: 0 },
+      totalVotes: 8,
+      sumStars: 39,
+      starsCount: { 5: 7, 4: 1, 3: 0, 2: 0, 1: 0 },
       userVoted: false
     };
     const stored = localStorage.getItem(this.currentExamKey + '_rating');
@@ -45,7 +45,6 @@ window.RatingCommentModule = {
     if (avgEl) avgEl.textContent = avg;
     if (countEl) countEl.textContent = `${data.totalVotes} lượt đánh giá`;
 
-    // Render sao tổng quan
     if (starsSummaryEl) {
       let starsHTML = '';
       const roundedAvg = Math.round(parseFloat(avg));
@@ -55,7 +54,6 @@ window.RatingCommentModule = {
       starsSummaryEl.innerHTML = starsHTML;
     }
 
-    // Render các thanh tiến trình sao (5 sao -> 1 sao)
     for (let i = 5; i >= 1; i--) {
       const barEl = document.getElementById(`star-bar-${i}`);
       const countNumEl = document.getElementById(`star-count-${i}`);
@@ -66,7 +64,6 @@ window.RatingCommentModule = {
       if (countNumEl) countNumEl.textContent = count;
     }
 
-    // Hiển thị trạng thái sao tương tác cho người dùng
     this.highlightInteractiveStars(data.userVoted ? data.userVotedVal : 0);
   },
 
@@ -86,7 +83,7 @@ window.RatingCommentModule = {
   submitRating(starValue) {
     const data = this.getRatingData();
     if (data.userVoted) {
-      if (window.UIComponentsModule) window.UIComponentsModule.showToast('Bạn đã đánh giá đề thi này rồi!', 'fa-solid fa-circle-info');
+      if (window.UIComponentsModule) window.UIComponentsModule.showToast('Bạn đã đánh giá bài thi này rồi!', 'fa-solid fa-circle-info');
       return;
     }
 
@@ -127,7 +124,7 @@ window.RatingCommentModule = {
       listEl.innerHTML = `
         <div class="empty-comments-state">
           <i class="fa-regular fa-comments"></i>
-          <p>Chưa có bình luận nào. Hãy là người đầu tiên để lại ý kiến về đề thi này!</p>
+          <p>Chưa có bình luận nào. Hãy là người đầu tiên đặt câu hỏi hoặc gửi nhận xét về đề thi này!</p>
         </div>
       `;
       return;
@@ -165,7 +162,7 @@ window.RatingCommentModule = {
       time: new Date().toLocaleDateString('vi-VN', { hour: '2-digit', minute: '2-digit', day: '2-digit', month: '2-digit', year: 'numeric' })
     };
 
-    comments.unshift(newComment); // Đưa bình luận mới lên đầu
+    comments.unshift(newComment);
     this.saveCommentsData(comments);
     this.renderComments();
 
@@ -175,7 +172,6 @@ window.RatingCommentModule = {
   },
 
   bindEvents() {
-    // Sự kiện di chuột & click đánh giá sao
     const starContainer = document.getElementById('user-star-input');
     if (starContainer) {
       const stars = starContainer.querySelectorAll('i');
@@ -197,7 +193,6 @@ window.RatingCommentModule = {
       });
     }
 
-    // Sự kiện Submit Form Bình Luận
     const form = document.getElementById('cmt-submit-form');
     if (form) {
       form.addEventListener('submit', (e) => {
@@ -213,8 +208,6 @@ window.RatingCommentModule = {
         }
 
         this.addComment(name, age, school, content);
-
-        // Reset ô nội dung
         document.getElementById('cmt-user-content').value = '';
       });
     }
