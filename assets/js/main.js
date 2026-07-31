@@ -3,9 +3,14 @@
 ========================================================= */
 
 document.addEventListener('DOMContentLoaded', async () => {
-  // 0. BỔ SUNG: Kích hoạt module bảo vệ (Chống Copy, chặn F12 / DevTools)
+  // 0. Kích hoạt module bảo vệ chống Copy / F12
   if (window.ProtectionModule) {
     window.ProtectionModule.init();
+  }
+
+  // 0. Kích hoạt Module Đánh giá sao & Bình luận
+  if (window.RatingCommentModule) {
+    window.RatingCommentModule.init();
   }
 
   // Tự động nạp file dữ liệu tương ứng (data-tournament.js hoặc data-marathon.js) dựa vào URL ?type=...
@@ -31,11 +36,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.head.appendChild(dataScript);
   });
 
-  // =========================================================
-  // GIỮ NGUYÊN 100% TOÀN BỘ LOGIC GỐC
-  // =========================================================
-
-  // 1. Tự động Render Footer & Toast Notification chung
+  // 1. Render Footer & Toast
   if (window.UIComponentsModule) {
     window.UIComponentsModule.init();
   }
@@ -43,33 +44,31 @@ document.addEventListener('DOMContentLoaded', async () => {
   const data = window.CONTEST_DATA;
   if (!data) return;
 
-  // 2. Thiết lập Theme Class động (VD: theme-marathon)
   if (data.themeClass) {
     document.body.classList.add(data.themeClass);
   }
 
-  // 3. Cập nhật Tiêu đề và Mô tả Hero Header động
   const heroTitle = document.getElementById('hero-title');
   const heroSub = document.getElementById('hero-sub');
   if (heroTitle) heroTitle.textContent = data.title;
   if (heroSub) heroSub.textContent = data.subTitle;
 
-  // 4. Render Cây danh mục bài thi động từ Module Data
   if (window.MenuTreeModule) {
     window.MenuTreeModule.render('tree-menu', data);
   }
 
-  // 5. Khởi tạo Sự kiện cho Bộ nút Chia sẻ (Facebook, Copy Link)
   if (window.ShareActionsModule) {
     window.ShareActionsModule.init();
   }
 
-  // 6. Quản lý việc Chọn & Kích hoạt Bài thi
+  // Quản lý việc Chọn & Kích hoạt Bài thi
   const examItems = document.querySelectorAll('.exam-item');
 
   function activateExam(item) {
     examItems.forEach(i => i.classList.remove('active'));
     item.classList.add('active');
+
+    const examTitle = item.getAttribute('data-title');
 
     // Cập nhật Khung Xem trước PDF
     if (window.PdfViewerModule) {
@@ -80,9 +79,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (window.MenuTreeModule) {
       window.MenuTreeModule.expandParentsOfItem(item);
     }
+
+    // NẠP ĐÁNH GIÁ 5 SAO & BÌNH LUẬN RIÊNG CHO ĐỀ THI NÀY
+    if (window.RatingCommentModule && examTitle) {
+      window.RatingCommentModule.loadForExam(examTitle);
+    }
   }
 
-  // 7. Tự động Chọn Bài thi Mới nhất hoặc Bài thi từ Hash trên URL
+  // Tự động Chọn Bài thi Mới nhất hoặc Bài thi từ Hash trên URL
   if (examItems.length > 0) {
     const urlHash = window.location.hash.replace('#', '').trim();
     let targetExam = null;
