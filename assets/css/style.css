@@ -104,7 +104,98 @@ a { text-decoration: none; color: inherit; }
 .social-card:hover { background-color: var(--accent-color); color: #ffffff; border-color: var(--accent-color); }
 
 /* =========================================================
-   4. BỐ CỤC 2 CỘT & SIDEBAR
+   4. PORTAL GRID (Trang index.html chuẩn)
+========================================================= */
+.portal-container {
+  max-width: 1000px;
+  margin: 20px auto 60px;
+  padding: 0 20px;
+}
+
+.portal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+.portal-card {
+  background: var(--card-bg);
+  border-radius: 10px;
+  padding: 35px 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  border: 1px solid var(--border-color);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.portal-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  border-color: var(--accent-color);
+}
+
+.portal-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: rgba(216, 59, 106, 0.08);
+  color: var(--accent-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.portal-card.card-marathon .portal-icon {
+  background: rgba(64, 128, 214, 0.08);
+  color: #4080D6;
+}
+
+.portal-card h2 {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.portal-card p {
+  font-size: 14px;
+  color: var(--text-sub);
+  line-height: 1.6;
+  margin-bottom: 24px;
+  flex-grow: 1;
+}
+
+.portal-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border-radius: 6px;
+  background: var(--accent-color);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 15px;
+  transition: all 0.2s ease;
+}
+
+.portal-btn:hover {
+  background: var(--accent-hover);
+  transform: scale(1.03);
+}
+
+.portal-card.card-marathon .portal-btn {
+  background: #4080D6;
+}
+.portal-card.card-marathon .portal-btn:hover {
+  background: #2b62ab;
+}
+
+/* =========================================================
+   5. BỐ CỤC 2 CỘT & SIDEBAR
 ========================================================= */
 .layout-2col {
   display: flex;
@@ -156,7 +247,7 @@ a { text-decoration: none; color: inherit; }
   align-items: center;
   gap: 8px;
 }
-.sidebar-header h2 i { color: var(--accent-color); }
+.sidebar-header h2 i { color: var(--accent-color); font-size: 18px; }
 
 .year-title, .stage-title, .exam-item {
   display: flex;
@@ -182,7 +273,7 @@ a { text-decoration: none; color: inherit; }
   color: #ffffff !important;
   font-weight: 700;
 }
-.exam-item.active i, .active-contest i { color: #ffffff !important; }
+.exam-item.active i, .active-contest i { color: #ffffff !important; font-size: 14px; }
 
 .sidebar-actions-box {
   display: flex;
@@ -224,7 +315,7 @@ a { text-decoration: none; color: inherit; }
 .sidebar-action-btn.btn-course .btn-arrow { color: #ffffff; }
 
 /* =========================================================
-   5. CỘT PHẢI: PREVIEW AREA
+   6. CỘT PHẢI: PREVIEW AREA
 ========================================================= */
 .preview-area {
   flex-grow: 1;
@@ -313,7 +404,7 @@ a.week-btn:active, a.week-btn.active,
 .side-share-btn:hover { background: var(--accent-color); color: #ffffff; border-color: var(--accent-color); transform: scale(1.08); }
 
 /* =========================================================
-   6. WIDGET ĐÁNH GIÁ 5 SAO & THỐNG KÊ (RATING WIDGET)
+   7. WIDGET ĐÁNH GIÁ 5 SAO (MÀU SAO TRÙNG MÀU THEME PAGE)
 ========================================================= */
 .rating-widget-card {
   background: #ffffff;
@@ -334,6 +425,7 @@ a.week-btn:active, a.week-btn.active,
   padding-bottom: 10px;
   border-bottom: 1px solid #f0f0f0;
 }
+.rating-card-header h3 i { font-size: 16px; }
 
 .rating-body-grid {
   display: grid;
@@ -356,8 +448,9 @@ a.week-btn:active, a.week-btn.active,
   margin-bottom: 6px;
 }
 
+/* ĐỔI MÀU SAO TỰ ĐỘNG THEO ACCENT COLOR CỦA PAGE (HỒNG/XANH) */
 .rating-summary-stars {
-  color: #ffc107;
+  color: var(--accent-color);
   font-size: 16px;
   margin-bottom: 6px;
   display: flex;
@@ -393,11 +486,10 @@ a.week-btn:active, a.week-btn.active,
 
 .user-stars-input i:hover,
 .user-stars-input i.active {
-  color: #ffc107;
+  color: var(--accent-color) !important;
   transform: scale(1.15);
 }
 
-/* THANH THỐNG KÊ CHI TIẾT TỪNG SAO */
 .rating-breakdown-box {
   display: flex;
   flex-direction: column;
@@ -419,7 +511,7 @@ a.week-btn:active, a.week-btn.active,
   gap: 4px;
   font-weight: 600;
 }
-.star-label i { color: #ffc107; font-size: 12px; }
+.star-label i { color: var(--accent-color); font-size: 12px; }
 
 .progress-bar-bg {
   flex-grow: 1;
@@ -445,7 +537,7 @@ a.week-btn:active, a.week-btn.active,
 }
 
 /* =========================================================
-   7. WIDGET BÌNH LUẬN & THẢO LUẬN (COMMENTS)
+   8. WIDGET BÌNH LUẬN & THẢO LUẬN (COMMENTS)
 ========================================================= */
 .comment-widget-card {
   background: #ffffff;
@@ -466,6 +558,7 @@ a.week-btn:active, a.week-btn.active,
   padding-bottom: 10px;
   border-bottom: 1px solid #f0f0f0;
 }
+.comment-card-header h3 i { font-size: 16px; }
 
 .comment-card-header span {
   font-size: 14px;
@@ -473,7 +566,6 @@ a.week-btn:active, a.week-btn.active,
   font-weight: 600;
 }
 
-/* FORM NHẬP BÌNH LUẬN */
 .comment-form {
   background: #f8f9fa;
   border: 1px solid var(--border-color);
@@ -513,7 +605,7 @@ a.week-btn:active, a.week-btn.active,
   gap: 6px;
 }
 
-.input-group label i { color: var(--accent-color); }
+.input-group label i { color: var(--accent-color); font-size: 12px; }
 
 .input-group input,
 .input-group textarea {
@@ -559,7 +651,6 @@ a.week-btn:active, a.week-btn.active,
   transform: translateY(-1px);
 }
 
-/* FEED DƯỚI BÌNH LUẬN */
 .comments-feed-list {
   display: flex;
   flex-direction: column;
