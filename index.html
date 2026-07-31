@@ -12,7 +12,7 @@
 
   <div id="page-content">
     <section class="hero">
-      <h1><a href="https://pimaxpro.github.io/pimaxcontests" class="hero-title-link">PimaX Contests Community</a></h1>
+      <h1><a href="https://pimaxpro.github.io/pimaxcontests/" class="hero-title-link">PimaX Contests Community</a></h1>
       <p class="hero-sub">Cộng đồng học thuật PimaX</p>
 
       <div class="social-wrapper">
@@ -39,11 +39,13 @@
       </div>
     </main>
   </div>
-  <script src="assets/js/modules/protection.js"></script>
+
   <script src="assets/js/modules/ui-components.js"></script>
+  <script src="assets/js/modules/protection.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       if (window.UIComponentsModule) window.UIComponentsModule.init();
+      if (window.ProtectionModule) window.ProtectionModule.init();
     });
   </script>
 </body>
