@@ -4,7 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
 
 :root {
-  --accent-color: #D83B6A;       /* Mặc định: Pink (Tournament) */
+  --accent-color: #D83B6A;       /* Pink (Tournament) */
   --accent-hover: #b82650;
   --bg-color: #f5f7fb;
   --text-main: #1a202c;
@@ -53,6 +53,17 @@ input, textarea {
   -moz-user-select: text;
   -ms-user-select: text;
   user-select: text;
+}
+
+textarea,
+.input-group textarea,
+.reply-form-box textarea,
+.reply-form-card textarea {
+  resize: none !important;
+  overflow: hidden;
+  min-height: 42px;
+  line-height: 1.5;
+  transition: height 0.1s ease;
 }
 
 h1, h2, h3, h4, h5, h6, 
@@ -104,7 +115,7 @@ a { text-decoration: none; color: inherit; }
 .social-card:hover { background-color: var(--accent-color); color: #ffffff; border-color: var(--accent-color); }
 
 /* =========================================================
-   4. PORTAL GRID (Trang index.html chuẩn)
+   4. PORTAL GRID (Trang index.html)
 ========================================================= */
 .portal-container {
   max-width: 1000px;
@@ -204,6 +215,7 @@ a { text-decoration: none; color: inherit; }
   margin: 30px auto;
   padding: 0 20px;
   min-height: calc(100vh - 200px);
+  align-items: flex-start; /* Giúp 2 cột căn bằng đỉnh lề trên */
 }
 
 .sidebar-column {
@@ -315,20 +327,21 @@ a { text-decoration: none; color: inherit; }
 .sidebar-action-btn.btn-course .btn-arrow { color: #ffffff; }
 
 /* =========================================================
-   6. CỘT PHẢI: PREVIEW AREA
+   6. CỘT PHẢI: PREVIEW AREA (BOX TRẮNG LIỀN KHỐI CHUẨN GỐC)
 ========================================================= */
 .preview-area {
   flex-grow: 1;
   background: var(--card-bg);
   border-radius: 8px;
   padding: 24px;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
   border: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
+/* HEADER BÀI THI */
 .preview-header { margin-bottom: 0; }
 .preview-title-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
 .preview-title-row .doc-icon { font-size: 34px; color: var(--accent-color); line-height: 1; }
@@ -376,13 +389,25 @@ a.week-btn:active, a.week-btn.active,
 .drive-iframe-container {
   position: relative;
   width: 100%;
-  min-height: 70vh;
-  border-radius: 6px;
-  overflow: hidden;
+  height: 80vh;              /* Chiều cao khung xem vừa đẹp */
+  min-height: 600px;
+  border-radius: 12px !important; /* Bo tròn 4 góc chuẩn đẹp */
   border: 1px solid var(--border-color);
+  overflow: hidden !important;    /* Chặn PDF tràn ra khỏi 4 góc bo */
+  background: #ffffff;
+  margin-bottom: 0 !important;  /* Triệt tiêu hoàn toàn khoảng hở khoảng trắng bên dưới */
 }
 
-.drive-iframe-container iframe { width: 100%; height: 100%; min-height: 70vh; border: none; }
+/* Ép thẻ iframe hiển thị khối và tràn 100% không để lại khe hở */
+.drive-iframe-container iframe {
+  display: block !important;
+  width: 100%;
+  height: 100%;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
 .iframe-overlay-cover { position: absolute; top: 0; right: 0; width: 65px; height: 65px; z-index: 15; }
 
 .side-share-actions { position: absolute; top: 15px; right: 15px; display: flex; flex-direction: column; gap: 10px; z-index: 20; }
@@ -403,17 +428,14 @@ a.week-btn:active, a.week-btn.active,
 }
 .side-share-btn:hover { background: var(--accent-color); color: #ffffff; border-color: var(--accent-color); transform: scale(1.08); }
 
-/* =========================================================
-   7. WIDGET ĐÁNH GIÁ 5 SAO (MÀU SAO TRÙNG MÀU THEME PAGE)
-========================================================= */
-.rating-widget-card {
-  background: #ffffff;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+.card-inner-divider {
+  border: none;
+  height: 1px;
+  background: #f0f0f0;
+  margin: 10px 0;
 }
 
+/* WIDGET ĐÁNH GIÁ 5 SAO */
 .rating-card-header h3 {
   font-size: 16px;
   font-weight: 800;
@@ -448,7 +470,6 @@ a.week-btn:active, a.week-btn.active,
   margin-bottom: 6px;
 }
 
-/* ĐỔI MÀU SAO TỰ ĐỘNG THEO ACCENT COLOR CỦA PAGE (HỒNG/XANH) */
 .rating-summary-stars {
   color: var(--accent-color);
   font-size: 16px;
@@ -536,17 +557,7 @@ a.week-btn:active, a.week-btn.active,
   color: var(--text-sub);
 }
 
-/* =========================================================
-   8. WIDGET BÌNH LUẬN & THẢO LUẬN (COMMENTS)
-========================================================= */
-.comment-widget-card {
-  background: #ffffff;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-}
-
+/* WIDGET BÌNH LUẬN */
 .comment-card-header h3 {
   font-size: 16px;
   font-weight: 800;
@@ -592,8 +603,8 @@ a.week-btn:active, a.week-btn.active,
 }
 
 .input-group.input-small {
-  flex: 0 0 90px;
-  min-width: 90px;
+  flex: 0 0 100px;
+  min-width: 100px;
 }
 
 .input-group label {
@@ -734,68 +745,23 @@ a.week-btn:active, a.week-btn.active,
   line-height: 1.5;
 }
 
-/* KHUNG BẢNG ĐÁP ÁN NỔI */
-.answer-box-drawer {
-  background: #ffffff;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  margin-bottom: 16px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-  display: none;
-  animation: slideDownFade 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.answer-box-drawer.show { display: block; }
-
-@keyframes slideDownFade {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+/* =========================================================
+   7. FOOTER CHÂN TRANG
+========================================================= */
+.site-footer {
+  flex-shrink: 0;
+  margin-top: auto;
+  padding: 30px 0 24px;
 }
 
-.answer-drawer-header {
-  padding: 12px 18px;
-  background: #f8f9fa;
-  border-bottom: 1px solid var(--border-color);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+.footer-divider { border: none; height: 1px; background: rgba(0, 0, 0, 0.1); margin-bottom: 18px; }
+.footer-content { display: flex; align-items: center; justify-content: center; gap: 12px; color: #555; font-size: 15px; }
+
+.footer-logo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
 }
-
-.answer-drawer-header h3 { font-size: 15px; font-weight: 800; color: var(--accent-color); display: flex; align-items: center; gap: 8px; }
-.btn-close-drawer { background: transparent; border: none; font-size: 18px; color: #718096; cursor: pointer; padding: 0 4px; }
-
-.answer-drawer-body { padding: 16px; max-height: 260px; overflow-y: auto; }
-.answer-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(95px, 1fr)); gap: 10px; }
-.answer-item { background: #f8f9fa; border: 1px solid var(--border-color); border-radius: 6px; padding: 6px 8px; text-align: center; }
-.answer-item .q-num { font-size: 11px; font-weight: 700; color: var(--text-sub); margin-bottom: 2px; display: block; }
-.answer-item .q-val { font-size: 14.5px; font-weight: 800; color: var(--accent-color); font-family: var(--font-heading); }
-.answer-item .tf-sub { font-size: 11.5px; font-weight: 600; color: #2d3748; display: flex; justify-content: space-between; padding: 1px 2px; border-bottom: 1px dashed #e2e8f0; }
-
-.toast-notification {
-  position: fixed;
-  top: 25px;
-  left: 50%;
-  transform: translate(-50%, -20px);
-  background: #ffffff;
-  color: var(--text-main);
-  padding: 12px 24px;
-  border-radius: 25px;
-  font-size: 14.5px;
-  font-weight: 700;
-  font-family: var(--font-heading);
-  border: 1.5px solid var(--accent-color);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.35s ease;
-  z-index: 999999;
-}
-.toast-notification.show { opacity: 1; pointer-events: auto; transform: translate(-50%, 0); }
-.toast-notification i { color: var(--accent-color); font-size: 16px; }
 
 @media (max-width: 992px) {
   .layout-2col { flex-direction: column; }
@@ -803,4 +769,513 @@ a.week-btn:active, a.week-btn.active,
   .sidebar-exams-box { max-height: 400px; }
   .rating-body-grid { grid-template-columns: 1fr; gap: 16px; }
   .rating-summary-box { border-right: none; border-bottom: 1px solid var(--border-color); padding-right: 0; padding-bottom: 16px; }
+}
+
+/* =========================================================
+   MODAL XÁC NHẬN ĐÁNH GIÁ LẠI (CONFIRM MODAL)
+========================================================= */
+.rating-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.25s ease;
+}
+
+.rating-modal-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.rating-modal-card {
+  background: #ffffff;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 420px;
+  padding: 28px 24px;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  transform: scale(0.9);
+  transition: transform 0.25s ease;
+}
+
+.rating-modal-overlay.show .rating-modal-card {
+  transform: scale(1);
+}
+
+.rating-modal-card .modal-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: rgba(216, 59, 106, 0.1);
+  color: var(--accent-color);
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+}
+
+.rating-modal-card h3 {
+  font-size: 18px;
+  font-weight: 800;
+  color: #1a202c;
+  margin-bottom: 8px;
+  font-family: var(--font-heading);
+}
+
+.rating-modal-card p {
+  font-size: 14px;
+  color: var(--text-sub);
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.modal-btn {
+  flex: 1;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  font-family: var(--font-heading);
+}
+
+.modal-btn.btn-cancel {
+  background: #edf2f7;
+  color: #4a5568;
+}
+
+.modal-btn.btn-cancel:hover {
+  background: #e2e8f0;
+}
+
+.modal-btn.btn-confirm {
+  background: var(--accent-color);
+  color: #ffffff;
+}
+
+.modal-btn.btn-confirm:hover {
+  background: var(--accent-hover);
+}
+
+/* =========================================================
+   REPLY COMMENT STYLES & NÂNG CẤP THIẾT KẾ BOX REPLY
+========================================================= */
+.comment-block-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.comment-actions-bar {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.btn-reply-trigger {
+  background: transparent;
+  border: none;
+  color: var(--accent-color);
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background 0.15s ease;
+}
+
+.btn-reply-trigger:hover {
+  background: rgba(216, 59, 106, 0.08);
+}
+
+/* KHUNG TRẢ LỜI MỚI (.reply-form-card) & TƯƠNG THÍCH KHUNG CŨ (.reply-form-box) */
+.reply-form-card,
+.reply-form-box {
+  margin-left: 54px;
+  margin-top: 4px;
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-left: 3px solid var(--accent-color);
+  border-radius: 8px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  animation: slideDownReply 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reply-card-header {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-sub);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.reply-card-header i {
+  color: var(--accent-color);
+  font-size: 11px;
+}
+
+.reply-card-header strong {
+  color: var(--text-main);
+}
+
+.reply-inputs-row {
+  display: flex;
+  gap: 8px;
+}
+
+.reply-inputs-row input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 13px;
+  outline: none;
+  background: #f8fafc;
+  transition: all 0.2s ease;
+}
+
+.reply-inputs-row input:focus,
+.reply-form-card textarea:focus,
+.reply-form-box textarea:focus {
+  background: #ffffff;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(216, 59, 106, 0.08);
+}
+
+.reply-form-card textarea,
+.reply-form-box textarea {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: var(--font-base);
+  outline: none;
+  background: #f8fafc;
+  transition: all 0.2s ease;
+}
+
+.reply-btn-row {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  margin-top: 2px;
+}
+
+.btn-cancel-reply {
+  background: transparent;
+  color: var(--text-sub);
+  border: none;
+  padding: 6px 14px;
+  border-radius: 5px;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-cancel-reply:hover {
+  background: #edf2f7;
+  color: var(--text-main);
+}
+
+.btn-submit-reply {
+  background: var(--accent-color);
+  color: #ffffff;
+  border: none;
+  padding: 7px 16px;
+  border-radius: 6px;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.btn-submit-reply:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(216, 59, 106, 0.25);
+}
+
+.reply-count-badge {
+  background: rgba(216, 59, 106, 0.12);
+  color: var(--accent-color);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 10px;
+  margin-left: 2px;
+}
+
+/* DANH SÁCH BÌNH LUẬN CON (REPLIES) */
+.replies-container {
+  margin-left: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.comment-item-card.reply-item {
+  background: #fafbfc;
+  border-color: #edf2f7;
+}
+
+.comment-avatar.reply-avatar {
+  width: 32px;
+  height: 32px;
+  font-size: 13px;
+  background: #e2e8f0;
+  color: #4a5568;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDownReply {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================
+   NÂNG CẤP THIẾT KẾ: TOAST THÔNG BÁO THÀNH CÔNG (GLASSMORPHISM)
+========================================================= */
+.custom-toast-pill {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 18px 10px 12px;
+  background: rgba(26, 32, 44, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #ffffff;
+  border-radius: 50px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px) scale(0.95);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.custom-toast-pill.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.toast-icon-wrapper {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--accent-color);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.toast-body {
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  padding-right: 4px;
+}
+
+/* =========================================================
+   8. STYLE CHO ANSWER BOX DRAWER (TỐI ƯU SIÊU GỌN 40 CÂU)
+========================================================= */
+.answer-box-drawer {
+  display: none;
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 14px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  animation: slideDownDrawer 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.answer-box-drawer.show {
+  display: block !important;
+}
+
+.answer-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.answer-drawer-header h3 {
+  font-size: 14.5px;
+  font-weight: 800;
+  color: var(--accent-color);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-close-drawer {
+  background: #edf2f7;
+  border: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  color: #4a5568;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.btn-close-drawer:hover {
+  background: var(--accent-color);
+  color: #ffffff;
+}
+
+.answer-drawer-body {
+  max-height: 260px; /* Giới hạn chiều cao tối đa, quá 40 câu sẽ tự cuộn nhẹ */
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.answer-drawer-body::-webkit-scrollbar {
+  width: 5px;
+}
+
+.answer-drawer-body::-webkit-scrollbar-thumb {
+  background: #cbd5e0;
+  border-radius: 4px;
+}
+
+.section-header-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #1a202c;
+  margin: 10px 0 8px 0;
+  padding-left: 6px;
+  border-left: 3px solid var(--accent-color);
+}
+
+/* Lưới ô đáp án siêu gọn */
+.answer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(68px, 1fr));
+  gap: 6px;
+}
+
+.answer-item {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 5px;
+  padding: 4px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 12px;
+  transition: all 0.15s ease;
+}
+
+.answer-item:hover {
+  border-color: var(--accent-color);
+  background: #ffffff;
+}
+
+.answer-item .q-num {
+  font-weight: 600;
+  color: var(--text-sub);
+  font-size: 11px;
+}
+
+.answer-item .q-val {
+  font-weight: 800;
+  color: var(--accent-color);
+  font-size: 12.5px;
+}
+
+/* Kiểu riêng cho câu Đúng / Sai (Cần chút khoảng trống hơn) */
+.answer-item.tf-item {
+  grid-column: span 2;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 6px;
+}
+
+.tf-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+  width: 100%;
+  font-size: 11px;
+}
+
+.tf-sub {
+  display: flex;
+  justify-content: space-between;
+  background: #ffffff;
+  padding: 1px 4px;
+  border-radius: 3px;
+  border: 1px solid #edf2f7;
+}
+
+@keyframes slideDownDrawer {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
