@@ -1,15 +1,13 @@
 /* =========================================================
-   MODULE: ANSWER SHEET DRAWER (KHUNG BẢNG ĐÁP ÁN SONG SONG PDF)
+   MODULE: ANSWER SHEET DRAWER (COMPACT OPTIMIZED GRID)
 ========================================================= */
 
 window.AnswerModalModule = {
   renderDrawerHTML() {
     if (document.getElementById('answer-box-drawer')) return;
 
-    const previewArea = document.querySelector('.preview-area');
     const iframeContainer = document.querySelector('.drive-iframe-container');
-
-    if (!previewArea || !iframeContainer) return;
+    if (!iframeContainer) return;
 
     const drawerHTML = `
       <div id="answer-box-drawer" class="answer-box-drawer">
@@ -23,9 +21,7 @@ window.AnswerModalModule = {
       </div>
     `;
 
-    // Chèn Khung Đáp Án vào ngay trước Khung xem PDF (iframe)
     iframeContainer.insertAdjacentHTML('beforebegin', drawerHTML);
-
     document.getElementById('btn-close-answer-drawer').addEventListener('click', () => this.hide());
   },
 
@@ -56,19 +52,23 @@ window.AnswerModalModule = {
       const val = answersObj[qKey];
       const displayNum = autoResetIndex ? index : qKey;
 
-      gridHTML += `<div class="answer-item"><span class="q-num">Câu ${displayNum}</span>`;
-
       if (typeof val === 'object') {
-        gridHTML += `<div class="tf-box">`;
+        // Cấu trúc cho câu Đúng / Sai
+        gridHTML += `<div class="answer-item tf-item"><span class="q-num">C${displayNum}</span><div class="tf-box">`;
         Object.keys(val).forEach(sub => {
-          gridHTML += `<div class="tf-sub"><span>${sub.toUpperCase()}:</span> <span>${val[sub]}</span></div>`;
+          gridHTML += `<div class="tf-sub"><span>${sub.toUpperCase()}:</span> <strong>${val[sub]}</strong></div>`;
         });
-        gridHTML += `</div>`;
+        gridHTML += `</div></div>`;
       } else {
-        gridHTML += `<span class="q-val">${val}</span>`;
+        // Cấu trúc cho Trắc nghiệm & Điền số (Nằm gọn 1 ô)
+        gridHTML += `
+          <div class="answer-item">
+            <span class="q-num">${displayNum}.</span>
+            <span class="q-val">${val}</span>
+          </div>
+        `;
       }
 
-      gridHTML += `</div>`;
       index++;
     });
 
@@ -82,7 +82,6 @@ window.AnswerModalModule = {
     const drawerEl = document.getElementById('answer-box-drawer');
     const btnAnswers = document.getElementById('btn-answers');
 
-    // Nếu đang mở mà bấm lại nút "Đáp án" -> Thu gọn lại
     if (drawerEl && drawerEl.classList.contains('show')) {
       this.hide();
       return;
@@ -113,7 +112,7 @@ window.AnswerModalModule = {
     const titleEl = document.getElementById('answer-drawer-title');
     const container = document.getElementById('answer-drawer-container');
 
-    titleEl.textContent = `Bảng Đáp Án - ${data.examTitle || examCode}`;
+    if (titleEl) titleEl.textContent = `Bảng Đáp Án - ${data.examTitle || examCode}`;
     let bodyHTML = '';
 
     if (data.sections && Array.isArray(data.sections)) {
@@ -125,8 +124,8 @@ window.AnswerModalModule = {
       bodyHTML = this.renderAnswerGrid(data.answers, false);
     }
 
-    container.innerHTML = bodyHTML;
-    drawerEl.classList.add('show');
+    if (container) container.innerHTML = bodyHTML;
+    if (drawerEl) drawerEl.classList.add('show');
     if (btnAnswers) btnAnswers.classList.add('active');
   },
 
