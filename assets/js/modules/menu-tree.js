@@ -35,15 +35,15 @@ window.MenuTreeModule = {
 
     let html = '';
 
-    // 1. Thẻ chọn Kì thi
+    // 1. Thẻ chọn Kỳ thi (ĐÃ ĐỒNG BỘ LINK VỀ CONTEST.HTML)
     const isTournament = data.id === 'tournament';
     html += `
       <div class="contest-selector-box" style="margin-bottom: 12px;">
-        <a href="Tournament.html" class="year-title ${isTournament ? 'active-contest' : ''}" style="${!isTournament ? 'opacity: 0.85;' : ''}">
+        <a href="contest.html?type=tournament" class="year-title ${isTournament ? 'active-contest' : ''}" style="${!isTournament ? 'opacity: 0.85;' : ''}">
           <i class="fa-solid fa-trophy"></i>
           <span>1. TSABK Tournament</span>
         </a>
-        <a href="Marathon.html" class="year-title ${!isTournament ? 'active-contest' : ''}" style="${isTournament ? 'margin-top: 6px; opacity: 0.85;' : 'margin-top: 6px;'}">
+        <a href="contest.html?type=marathon" class="year-title ${!isTournament ? 'active-contest' : ''}" style="${isTournament ? 'margin-top: 6px; opacity: 0.85;' : 'margin-top: 6px;'}">
           <i class="fa-solid fa-person-running"></i>
           <span>2. Infinity Marathon</span>
         </a>
