@@ -3,12 +3,12 @@
 ========================================================= */
 
 document.addEventListener('DOMContentLoaded', async () => {
-  // 0. Kích hoạt module bảo vệ chống Copy / F12
+  // 0. Bổ vệ chống Copy / F12
   if (window.ProtectionModule) {
     window.ProtectionModule.init();
   }
 
-  // 0. Kích hoạt Module Đánh giá sao & Bình luận
+  // 0. Khởi tạo Module Đánh giá & Bình luận dùng chung
   if (window.RatingCommentModule) {
     window.RatingCommentModule.init();
   }
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.head.appendChild(dataScript);
   });
 
-  // 1. Render Footer & Toast
+  // 1. Tự động Render Footer & Toast
   if (window.UIComponentsModule) {
     window.UIComponentsModule.init();
   }
@@ -70,17 +70,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const examTitle = item.getAttribute('data-title');
 
-    // Cập nhật Khung Xem trước PDF
+    // Cập nhật Khung Xem trước PDF ở Cột 2
     if (window.PdfViewerModule) {
       window.PdfViewerModule.renderPreview(item);
     }
 
-    // Tự động Mở các Nhánh Cây chứa Bài thi được chọn
+    // Tự động Mở các Nhánh Cây chứa Bài thi được chọn ở Cột 1
     if (window.MenuTreeModule) {
       window.MenuTreeModule.expandParentsOfItem(item);
     }
 
-    // NẠP ĐÁNH GIÁ 5 SAO & BÌNH LUẬN RIÊNG CHO ĐỀ THI NÀY
+    // TỰ ĐỘNG NẠP LẠI ĐÁNH GIÁ SAO & BÌNH LUẬN DÙNG CHUNG CỦA BÀI THI NÀY VÀO CỘT 2
     if (window.RatingCommentModule && examTitle) {
       window.RatingCommentModule.loadForExam(examTitle);
     }
