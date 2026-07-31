@@ -3,7 +3,12 @@
 ========================================================= */
 
 document.addEventListener('DOMContentLoaded', async () => {
-  // 0. Tự động nạp file dữ liệu tương ứng (data-tournament.js hoặc data-marathon.js) dựa vào URL ?type=...
+  // 0. BỔ SUNG: Kích hoạt module bảo vệ (Chống Copy, chặn F12 / DevTools)
+  if (window.ProtectionModule) {
+    window.ProtectionModule.init();
+  }
+
+  // Tự động nạp file dữ liệu tương ứng (data-tournament.js hoặc data-marathon.js) dựa vào URL ?type=...
   const urlParams = new URLSearchParams(window.location.search);
   let contestType = urlParams.get('type');
 
@@ -25,6 +30,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     dataScript.onload = () => resolve();
     document.head.appendChild(dataScript);
   });
+
+  // =========================================================
+  // GIỮ NGUYÊN 100% TOÀN BỘ LOGIC GỐC
+  // =========================================================
 
   // 1. Tự động Render Footer & Toast Notification chung
   if (window.UIComponentsModule) {
