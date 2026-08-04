@@ -51,10 +51,10 @@ window.CONTEST_DATA = {
               ranking: 'https://docs.google.com/spreadsheets/d/1d_xGoWr4KseEpNTXCM_jITX4710fUf5f_7ux6DjhfUk/edit?usp=sharing'
             },
              {
-              id: '#',
+              id: '11L5wsoIjpfgj1LYmuPnt2j_rs1YELdxZ',
               title: 'Marathon Week 5',
               subtitle: 'Tuần 5',
-              update: '#',
+              update: '04/08/2026',
               time: '90 phút',
               solution: '#',
               ranking: '#'
