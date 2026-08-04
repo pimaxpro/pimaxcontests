@@ -21,7 +21,7 @@ window.CONTEST_DATA = {
               update: '30/07/2026',
               time: '60 phút',
               solution: '#',
-              ranking: '#'
+              ranking: 'https://docs.google.com/spreadsheets/d/1W0KTyRBzXj3vTnVKrD6lgUkAZUV8BPpaU3FNebS3_c4/edit?gid=0#gid=0'
             }
           ]
         }
