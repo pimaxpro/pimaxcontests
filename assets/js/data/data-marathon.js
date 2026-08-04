@@ -29,7 +29,7 @@ window.CONTEST_DATA = {
               subtitle: 'Tuần 2',
               update: '08/07/2026',
               time: '90 phút',
-              solution: '#',
+              solution: 'https://drive.google.com/file/d/1Y1o5kcjDyal4Vm7PGbdFEIXSX5gAKzHS/view',
               ranking: 'https://docs.google.com/spreadsheets/d/1d_xGoWr4KseEpNTXCM_jITX4710fUf5f_7ux6DjhfUk/edit?usp=sharing'
             },
             {
@@ -38,7 +38,7 @@ window.CONTEST_DATA = {
               subtitle: 'Tuần 3',
               update: '15/07/2026',
               time: '90 phút',
-              solution: '#',
+              solution: 'https://drive.google.com/file/d/1KAv50pLG91vmXk4V-DwpwaO1rSbCMSfo/view',
               ranking: 'https://docs.google.com/spreadsheets/d/1d_xGoWr4KseEpNTXCM_jITX4710fUf5f_7ux6DjhfUk/edit?usp=sharing'
             },
             {
@@ -46,6 +46,15 @@ window.CONTEST_DATA = {
               title: 'Marathon Week 4',
               subtitle: 'Tuần 4',
               update: '22/07/2026',
+              time: '90 phút',
+              solution: '#',
+              ranking: 'https://docs.google.com/spreadsheets/d/1d_xGoWr4KseEpNTXCM_jITX4710fUf5f_7ux6DjhfUk/edit?usp=sharing'
+            },
+             {
+              id: '#',
+              title: 'Marathon Week 5',
+              subtitle: 'Tuần 5',
+              update: '#',
               time: '90 phút',
               solution: '#',
               ranking: '#'
