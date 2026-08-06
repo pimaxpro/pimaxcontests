@@ -22,6 +22,15 @@ window.CONTEST_DATA = {
               time: '60 phút',
               solution: '#',
               ranking: 'https://docs.google.com/spreadsheets/d/1W0KTyRBzXj3vTnVKrD6lgUkAZUV8BPpaU3FNebS3_c4/edit?gid=0#gid=0'
+            },
+            {
+              id: '1Be9T9nBHMzdKLnMMzYqlHXfbsIKXKIfi',
+              title: 'PMXST26−FALLT2',
+              subtitle: 'Tuần 2',
+              update: '6/8/2026',
+              time: '60 phút',
+              solution: '#',
+              ranking: 'https://docs.google.com/spreadsheets/d/1W0KTyRBzXj3vTnVKrD6lgUkAZUV8BPpaU3FNebS3_c4/edit?usp=sharing'
             }
           ]
         }
