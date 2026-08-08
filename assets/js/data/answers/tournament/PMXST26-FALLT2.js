@@ -1,9 +1,9 @@
 /* =========================================================
-   ĐÁP ÁN: PMXST26$-$FALLT2 (Dạng Đơn Đề / Không chia phần)
+   ĐÁP ÁN: PMXST26-FALLT2 (Dạng Đơn Đề / Không chia phần)
 ========================================================= */
 window.EXAM_ANSWERS_BANK = window.EXAM_ANSWERS_BANK || {};
 
-window.EXAM_ANSWERS_BANK["PMXST26$-$FALLT2"] = {
+window.EXAM_ANSWERS_BANK["PMXST26-FALLT2"] = {
   "examTitle": "PMXST26-FALLT2",
   "answers": {
     "1": "14",
