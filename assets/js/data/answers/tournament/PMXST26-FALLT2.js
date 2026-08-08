@@ -4,7 +4,7 @@
 window.EXAM_ANSWERS_BANK = window.EXAM_ANSWERS_BANK || {};
 
 window.EXAM_ANSWERS_BANK["PMXST26$-$FALLT2"] = {
-  "examTitle": "PMXST26$-$FALLT2",
+  "examTitle": "PMXST26-FALLT2",
   "answers": {
     "1": "14",
     "2": "B",
