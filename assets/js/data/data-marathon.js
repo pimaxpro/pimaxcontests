@@ -50,14 +50,23 @@ window.CONTEST_DATA = {
               solution: '#',
               ranking: 'https://docs.google.com/spreadsheets/d/1d_xGoWr4KseEpNTXCM_jITX4710fUf5f_7ux6DjhfUk/edit?usp=sharing'
             },
-             {
+            {
               id: '11L5wsoIjpfgj1LYmuPnt2j_rs1YELdxZ',
               title: 'Marathon Week 5',
               subtitle: 'Tuần 5',
               update: '04/08/2026',
               time: '90 phút',
               solution: '#',
-              ranking: '#'
+              ranking: 'https://docs.google.com/spreadsheets/d/1d_xGoWr4KseEpNTXCM_jITX4710fUf5f_7ux6DjhfUk/edit?usp=sharing'
+            },
+            {
+              id: '1W6ZEzjfIHIoV-v8IIZVQnO6X8DkPwScQ',
+              title: 'Marathon Week 6',
+              subtitle: 'Tuần 6',
+              update: '11/08/2026',
+              time: '90 phút',
+              solution: '#',
+              ranking: 'https://docs.google.com/spreadsheets/d/1d_xGoWr4KseEpNTXCM_jITX4710fUf5f_7ux6DjhfUk/edit?usp=sharing'
             }
           ]
         }
